@@ -1,0 +1,133 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background-color: #000; overflow: hidden; user-select: none; color: white; font-family: Arial, sans-serif; }
+
+#splash-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.45); /* Твоя прозорість */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+.full-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+
+.background-logo {
+    font-family: 'Allura', cursive;
+    font-weight: 300;
+    font-size: 10px;
+    position: absolute;
+    white-space: nowrap;
+    animation: jitter 0.3s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes jitter {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-1px); }
+}
+
+.logo-text {
+    font-family: 'Allura', cursive;
+    color: #ff0000;
+    font-size: clamp(5rem, 18vw, 12rem);
+    z-index: 10;
+    text-shadow: 0 0 40px rgba(255, 0, 0, 0.7);
+    pointer-events: none;
+}
+
+.swipe-text {
+    font-family: 'Comforter', cursive;
+    color: rgba(255, 0, 0, 0.4);
+    font-size: 1.5rem;
+    position: absolute;
+    bottom: 25px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Мови */
+.language-selector { position: absolute; top: 30px; right: 30px; z-index: 1100; }
+.lang-current {
+    background: rgba(255, 0, 0, 0.1);
+    color: #ff0000;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.lang-dropdown {
+    position: absolute; top: 100%; right: 0; display: none;
+    flex-direction: column; gap: 5px; margin-top: 5px;
+}
+.language-selector:hover .lang-dropdown { display: flex; }
+.lang-option {
+    background: rgba(20, 0, 0, 0.9);
+    color: #fff;
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#splash-screen.fade-out { opacity: 0; visibility: hidden; }
+
+#main-site { height: 100vh; display: flex; justify-content: center; align-items: center; background: radial-gradient(circle, #200000 0%, #000 100%); }
+/* Бокова панель контактів */
+.social-sidebar {
+    position: absolute;
+    left: 20px; /* Зліва */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1100;
+}
+
+.social-item {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 0, 0, 0.05);
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    color: white;
+    backdrop-filter: blur(5px);
+}
+
+.social-item img, .social-item svg {
+    width: 24px;
+    height: 24px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+/* Ефекти при наведенні */
+.social-item:hover {
+    background: rgba(255, 0, 0, 0.2);
+    border-color: #ff0000;
+    transform: scale(1.1) translateX(5px);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+}
+
+.social-item:hover img, .social-item:hover svg {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px #ff0000);
+}
+
+/* Специфічний колір для телефону (білий/червоний) */
+.social-item.phone svg {
+    fill: #ff0000;
+}
